@@ -1,13 +1,14 @@
 import tkinter
 import random
 from tkinter import messagebox
-import sys
 
 
 def update_tasks():
     clear_listbox()
     for task in tasks:
         lb_tasks.insert("end", task)
+    numtask = len(tasks)
+    label_dsp_count['text'] = numtask
 
 
 def clear_listbox():
@@ -65,7 +66,12 @@ def number_task():
 
 
 def exit_app():
-    sys.exit()
+    confex = messagebox.askquestion(
+        'Quit Confirmation', 'are you sue you want to quit?')
+    if confex.upper() == "YES":
+        root.destroy()
+    else:
+        pass
 
 
 root = tkinter.Tk()
@@ -88,40 +94,43 @@ label_title.grid(row=0, column=0)
 label_dsply = tkinter.Label(root, text="", bg="white")
 label_dsply.grid(row=0, column=1)
 
+label_dsp_count = tkinter.Label(root, text="", bg="white")
+label_dsp_count.grid(row=0, column=3)
+
 text_input = tkinter.Entry(root, width=15)
 text_input.grid(row=1, column=1)
 
 # button section
 text_add_bttn = tkinter.Button(
-    root, text="add todo", bg="white", fg="green", command=add_task)
+    root, text="add todo", bg="white", fg="green", width=15, command=add_task)
 text_add_bttn.grid(row=1, column=0)
 
 delone_bttn = tkinter.Button(
-    root, text="Delete", bg="white", command=delete_one)
+    root, text="Delete", bg="white", width=15, command=delete_one)
 delone_bttn.grid(row=2, column=0)
 
 delall_bttn = tkinter.Button(
-    root, text="Delete all", bg="white", command=delete_all)
+    root, text="Delete all", bg="white", width=15, command=delete_all)
 delall_bttn.grid(row=3, column=0)
 
 sort_asc = tkinter.Button(root, text="sort (ASC)",
-                          bg="White", command=sort_asc)
+                          bg="White", width=15, command=sort_asc)
 sort_asc.grid(row=4, column=0)
 
 sort_dsc = tkinter.Button(root, text="sort (DSC)",
-                          bg="White", command=sort_dsc)
+                          bg="White", width=15, command=sort_dsc)
 sort_dsc.grid(row=5, column=0)
 
 random_bttn = tkinter.Button(
-    root, text="random task", bg="White", command=random_task)
+    root, text="random task", bg="White", width=15, command=random_task)
 random_bttn.grid(row=6, column=0)
 
 number_task = tkinter.Button(
-    root, text="Number of Task", bg="white", command=number_task)
+    root, text="Number of Task", bg="white", width=15, command=number_task)
 number_task.grid(row=7, column=0)
 
 exit_bttn = tkinter.Button(root, text="exit app",
-                           bg="white", command=exit_app)
+                           bg="white", width=15, command=exit_app)
 exit_bttn.grid(row=8, column=0)
 
 lb_tasks = tkinter.Listbox(root)
