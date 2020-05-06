@@ -15,7 +15,8 @@ try to create to do list app with Tkinter GUI, firtst time using Tkinter.
 - [ ] add information windows that show version, and etc after it click
 - [x] neat the button format
 - [ ] try to add space between button and listbox.
-- [ ] add save and load list to file?
+- [x] add save and load list to file?
+- [x] add save and load button
 
 > more feature to be added
 > i try to code 1 hours per day!!! ,,ganbatte!!

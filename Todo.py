@@ -65,6 +65,30 @@ def number_task():
     label_dsply["text"] = numtask
 
 
+def save_act():
+    savecon = messagebox.askquestion(
+        'Save Confirmation', 'save your progress?')
+    if savecon.upper() == "YES":
+        with open("SaveFile.txt", "w") as filehandle:
+            for listitem in tasks:
+                filehandle.write('%s\n' % listitem)
+    else:
+        pass
+
+
+def load_act():
+    loadcon = messagebox.askquestion(
+        'Save Confirmation', 'save your progress?')
+    if loadcon.upper() == "YES":
+        with open('SaveFile.txt', 'r') as filereader:
+            for line in filereader:
+                currentask = line[:-1]
+                tasks.append(currentask)
+                update_tasks()
+    else:
+        pass
+
+
 def exit_app():
     confex = messagebox.askquestion(
         'Quit Confirmation', 'are you sue you want to quit?')
@@ -78,7 +102,7 @@ root = tkinter.Tk()
 # change root background col and ect
 root.configure(bg="white")
 root.title("my to do list")
-root.geometry("250x250")
+root.geometry("300x390")
 # database
 tasks = []
 # tasks = ['tes 1', 'best2', 'dest3']
@@ -132,6 +156,14 @@ number_task.grid(row=7, column=0)
 exit_bttn = tkinter.Button(root, text="exit app",
                            bg="white", width=15, command=exit_app)
 exit_bttn.grid(row=8, column=0)
+
+save_button = tkinter.Button(
+    root, text="save TodoList", bg="white", width=15, command=save_act)
+save_button.grid(row=9, column=0)
+
+load_button = tkinter.Button(
+    root, text="Load LastTodolist", bg="white", width=15, command=load_act)
+load_button.grid(row=10, column=0)
 
 lb_tasks = tkinter.Listbox(root)
 lb_tasks.grid(row=2, column=1, rowspan=7)
