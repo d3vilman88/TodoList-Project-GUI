@@ -76,15 +76,23 @@ def save_act():
         pass
 
 
+def load_info():
+    messagebox.showinfo(
+        "info", "this is Todolist V.1.0 \n created by FAIZAR RAHMAN \n Python Project",)
+
+
 def load_act():
     loadcon = messagebox.askquestion(
         'Save Confirmation', 'save your progress?')
     if loadcon.upper() == "YES":
+        tasks.clear()
+
         with open('SaveFile.txt', 'r') as filereader:
             for line in filereader:
-                currentask = line[:-1]
+                currentask = line
                 tasks.append(currentask)
-                update_tasks()
+            update_tasks()
+
     else:
         pass
 
@@ -102,7 +110,7 @@ root = tkinter.Tk()
 # change root background col and ect
 root.configure(bg="white")
 root.title("my to do list")
-root.geometry("300x390")
+root.geometry("260x300")
 # database
 tasks = []
 # tasks = ['tes 1', 'best2', 'dest3']
@@ -130,7 +138,7 @@ text_add_bttn = tkinter.Button(
 text_add_bttn.grid(row=1, column=0)
 
 delone_bttn = tkinter.Button(
-    root, text="Delete", bg="white", width=15, command=delete_one)
+    root, text="Done Task", bg="white", width=15, command=delete_one)
 delone_bttn.grid(row=2, column=0)
 
 delall_bttn = tkinter.Button(
@@ -159,11 +167,15 @@ exit_bttn.grid(row=8, column=0)
 
 save_button = tkinter.Button(
     root, text="save TodoList", bg="white", width=15, command=save_act)
-save_button.grid(row=9, column=0)
+save_button.grid(row=10, column=1)
 
 load_button = tkinter.Button(
     root, text="Load LastTodolist", bg="white", width=15, command=load_act)
 load_button.grid(row=10, column=0)
+
+info_button = tkinter.Button(
+    root, text="info", bg="white", width=15, command=load_info)
+info_button.grid(row=11, column=0, columnspan=2)
 
 lb_tasks = tkinter.Listbox(root)
 lb_tasks.grid(row=2, column=1, rowspan=7)
