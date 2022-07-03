@@ -56,9 +56,12 @@ def sort_dsc():
 
 
 def random_task():
-    randtask = random.choice(tasks)
-    label_dsply["text"] = randtask
-
+    try:
+        randtask = random.choice(tasks)
+        label_dsply["text"] = randtask
+        
+    except:
+        pass
 
 def number_task():
     numtask = len(tasks)
